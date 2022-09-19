@@ -1,30 +1,133 @@
-//Пользователь вводит с клавиатуры M чисел. Посчитайте, сколько чисел больше 0 ввёл пользователь.
-Console.WriteLine("Введите число M");  
- int m = Convert.ToInt32( Console.ReadLine() );
- int sum = 0;
-for (int i = 0; i < m; i++)
+//Задайте двумерный массив размером m×n, заполненный случайными вещественными числами.
+
+double[,] GetArray(int m, int n) 
+{
+    double[,] result = new double[m, n];
+    for (int i = 0; i < m; ++i)
     {
-     Console.WriteLine("Введите число: "); 
-     int a = Convert.ToInt32( Console.ReadLine() );
-     if (a > 0)
-        { 
-        sum++;
+        for (int j = 0; j < n; ++j)
+        {
+            result[i, j] = new Random().NextDouble();
         }
     }
-Console.WriteLine("Количество положительных чисел = {0}", sum);
+    return result;
+}
+
+void PrintArray(double[,] array)
+{
+    for (int i = 0; i < array.GetLength(0); ++i)
+    {
+        for (int j = 0; j < array.GetLength(1); ++j)
+        {
+           Console.Write(Math.Round(array[i, j], 1)+"; ");
+        }
+        Console.WriteLine();
+    }
+}
+
+Console.WriteLine("Введите количество строк");
+int rows = int.Parse(Console.ReadLine());
+
+Console.WriteLine("Введите количество столбцов");
+int columns = int.Parse(Console.ReadLine());
+
+double[,] result = GetArray(rows, columns);
+PrintArray(result);
 
 
-/* // Напишите программу, которая найдёт точку пересечения двух прямых, заданных уравнениями y = k1 * x + b1, y = k2 * x + b2; значения b1, k1, b2 и k2 задаются пользователем.
-Console.WriteLine("введите значение b1");
-double b1 = Convert.ToInt32(Console.ReadLine());
-Console.WriteLine("введите число k1");
-double k1 = Convert.ToInt32(Console.ReadLine());
-Console.WriteLine("введите значение b2");
-double b2 = Convert.ToInt32(Console.ReadLine());
-Console.WriteLine("введите число k2");
-double k2 = Convert.ToInt32(Console.ReadLine());
+// Напишите программу, которая на вход принимает позиции элемента в двумерном массиве, и возвращает значение этого элемента или же указание, что такого элемента нет.
+/*   int[,] GetArray(int m, int n, int minValue, int maxValue) 
+{
+    int[,] result = new int[m, n];
+    for (int i = 0; i < m; ++i)
+    {
+        for (int j = 0; j < n; ++j)
+        {
+            result[i, j] = new Random().Next(minValue, maxValue + 1);
+        }
+    }
+    return result;
+}
 
-double x = (b1 - b2)/(k2 - k1);
-double y = k2 * x + b2;
+void PrintArray(int[,] array)
+{
+    for (int i = 0; i < array.GetLength(0); ++i)
+    {
+        for (int j = 0; j < array.GetLength(1); ++j)
+        {
+           Console.Write(array[i, j]+" ");
+        }
+        Console.WriteLine();
+    }
+}
 
-Console.WriteLine($"две прямые пересекутся в точке с координатами X: {x}, Y: {y}"); */
+Console.WriteLine("Введите количество строк");
+int rows = int.Parse(Console.ReadLine());
+
+Console.WriteLine("Введите количество столбцов");
+int columns = int.Parse(Console.ReadLine());
+
+int[,] result = GetArray(rows, columns, 0, 9);
+PrintArray(result);
+
+Console.WriteLine("Введите номер строки - ");
+int m = int.Parse(Console.ReadLine());
+
+Console.WriteLine("Введите номер столбца -");
+int n = int.Parse(Console.ReadLine());
+
+if(m < result.GetLength(0) && n < result.GetLength(1))
+{
+Console.WriteLine(result[m, n]);
+}
+else
+{
+Console.WriteLine("Такой элемент отсутствует");  
+} */
+
+// Задайте двумерный массив из целых чисел. Найдите среднее арифметическое элементов в каждом столбце.
+/* int[,] GetArray(int m, int n, int minValue, int maxValue) 
+{
+    int[,] result = new int[m, n];
+    for (int i = 0; i < m; ++i)
+    {
+        for (int j = 0; j < n; ++j)
+        {
+            result[i, j] = new Random().Next(minValue, maxValue + 1);
+        }
+    }
+    return result;
+}
+
+void PrintArray(int[,] array)
+{
+    for (int i = 0; i < array.GetLength(0); ++i)
+    {
+        for (int j = 0; j < array.GetLength(1); ++j)
+        {
+           Console.Write(array[i, j]+" ");
+        }
+        Console.WriteLine();
+    }
+}
+
+Console.WriteLine("Введите количество строк");
+int rows = int.Parse(Console.ReadLine());
+
+Console.WriteLine("Введите количество столбцов");
+int columns = int.Parse(Console.ReadLine());
+
+int[,] result = GetArray(rows, columns, 0, 9);
+PrintArray(result);
+
+
+for(int j= 0; j < result.GetLength(1); j++)
+{
+    int a=0;
+    for(int i= 0; i < result.GetLength(0); i++)
+    {
+     a += result[i, j];
+    }
+     Console.WriteLine($"Cреднее арифметическое элементов столбца {j + 1} = {(float)a/rows}");   
+}
+  */

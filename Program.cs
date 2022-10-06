@@ -1,272 +1,90 @@
-//Задайте двумерный массив. Напишите программу, которая упорядочит по убыванию элементы каждой строки двумерного массива.
-int[,] GetArray(int m, int n, int minValue, int maxValue)
+//Задача 64: Задайте значения M и N. Напишите программу, которая выведет все натуральные числа в промежутке от M до N.
+int n = InputInt("Введите положительное число n - ");
+int m = InputInt("Введите положительное число m, должно быть <= n - ");
+if (n < 1)
 {
-    int[,] result = new int[m, n];
-    for (int i = 0; i < m; ++i)
-    {
-        for (int j = 0; j < n; ++j)
-        {
-            result[i, j] = new Random().Next(minValue, maxValue + 1);
-        }
-    }
-    return result;
+    Console.WriteLine("Ввели число < 1");
+}
+	
+if( m < 1 )
+{
+    Console.WriteLine(NaturalNumber(n, 1));
+}
+	
+else
+{
+    Console.WriteLine(NaturalNumber(n, m));
 }
 
-void PrintArray(int[,] array)
+int NaturalNumber(int n, int m)
 {
-    for (int i = 0; i < array.GetLength(0); ++i)
+    if (n == m)
     {
-        for (int j = 0; j < array.GetLength(1); ++j)
-        {
-           Console.Write(array[i, j]+" ");
-        }
-        Console.WriteLine();
+        return n;
     }
+    else
+    {
+	        Console.Write($"{NaturalNumber(n, m + 1)}, ");
+    }
+	    return m;
+}
+	
+
+int InputInt(string output)
+{
+    Console.Write(output);
+    return int.Parse(Console.ReadLine());
 }
 
-Console.WriteLine("Введите количество строк");
-int rows = int.Parse(Console.ReadLine());
 
-Console.WriteLine("Введите количество столбцов");
-int columns = int.Parse(Console.ReadLine());
+//Задача 66: Задайте значения M и N. Напишите программу, которая найдёт сумму натуральных элементов в промежутке от M до N.
 
-int[,] array = GetArray(rows, columns, 0, 10);
-PrintArray(array);
-Console.WriteLine();
+/* int m = InputInt("Введите M:");
+int n = InputInt("Введите N(должно быть больше M):");
 
-for (int i = 0; i < array.GetLength(0); i++)
+	
+if (n < m)
 {
-   
-    for(int j = 1; j <array.GetLength(1); j++)
-    {
-        for (int k = 0; k < array.GetLength(1) - 1; k++)
-      {
-        if (array[i, k] < array[i, k + 1])
-        {
-          int temp = array[i, k + 1];
-          array[i, k + 1] = array[i, k];
-          array[i, k] = temp;
-        }
-      }
-    }
+    Console.WriteLine("ввели число n < m");
 }
- PrintArray(array);
- 
-
-// Задайте прямоугольный двумерный массив. Напишите программу, которая будет находить строку с наименьшей суммой элементов.
-/* int[,] GetArray(int m, int n, int minValue, int maxValue)
+else
 {
-    int[,] result = new int[m, n];
-    for (int i = 0; i < m; ++i)
-    {
-        for (int j = 0; j < n; ++j)
-        {
-            result[i, j] = new Random().Next(minValue, maxValue + 1);
-        }
-    }
-    return result;
+Console.WriteLine($"Сумма элементов от {m} до {n} = {CountNaturalSum(m, n)}");
 }
 
-void PrintArray(int[,] array)
+int InputInt(string output)
 {
-    for (int i = 0; i < array.GetLength(0); ++i)
-    {
-        for (int j = 0; j < array.GetLength(1); ++j)
-        {
-           Console.Write(array[i, j]+" ");
-        }
-        Console.WriteLine();
-    }
+    Console.Write(output);
+    return int.Parse(Console.ReadLine());
+}
+	
+int CountNaturalSum(int m, int n)
+{
+    if (m == n)
+        return n;
+	    return n + CountNaturalSum(m, n - 1);
 }
 
-Console.WriteLine("Введите количество строк");
-int rows = int.Parse(Console.ReadLine());
-
-Console.WriteLine("Введите количество столбцов");
-int columns = int.Parse(Console.ReadLine());
-
-int[,] array = GetArray(rows, columns, 0, 15);
-PrintArray(array);
-Console.WriteLine();
-
-int sum = 999;
-int index = 0;
-for (int i = 0; i < array.GetLength(0); i++)
-{
-    int temp = 0;
-    for (int j = 0; j < array.GetLength(1); j++)
-    {
-        temp += array[i, j];
-    }
-    if (temp < sum)
-    {
-        sum = temp;
-        index = i;
-    }
-}
-Console.WriteLine("Строка с наименьшей суммой: " +index);
  */
-// Задайте две матрицы. Напишите программу, которая будет находить произведение двух матриц.
 
-/* int[,] GetArray(int m, int n, int minValue, int maxValue)
+/*  //Задача 68: Напишите программу вычисления функции Аккермана с помощью рекурсии. Даны два неотрицательных числа m и n.
+Console.WriteLine("Введите два положительных числа: M и N.");
+int m = InputInt("Введите M: ");
+int n = InputInt("Введите N: ");
+Console.WriteLine($"A({m}, {n}) = {Akkerman(m, n)}");
+
+int InputInt(string output)
 {
-    int[,] result = new int[m, n];
-    for (int i = 0; i < m; ++i)
-    {
-        for (int j = 0; j < n; ++j)
-        {
-            result[i, j] = new Random().Next(minValue, maxValue + 1);
-        }
-    }
-    return result;
+    Console.Write(output);
+    return int.Parse(Console.ReadLine());
 }
-
-void PrintArray(int[,] array)
+	
+int Akkerman(int m, int n)
 {
-    for (int i = 0; i < array.GetLength(0); ++i)
-    {
-        for (int j = 0; j < array.GetLength(1); ++j)
-        {
-           Console.Write(array[i, j]+" ");
-        }
-        Console.WriteLine();
-    }
-}
-
-Console.WriteLine("Введите количество строк");
-int rows = int.Parse(Console.ReadLine());
-
-Console.WriteLine("Введите количество столбцов");
-int columns = int.Parse(Console.ReadLine());
-
-int[,] array = GetArray(rows, columns, 0, 15);
-PrintArray(array);
-Console.WriteLine();
-
-int[,] array2 = GetArray(rows, columns, 0, 15);
-PrintArray(array2);
-Console.WriteLine();
-
-int[,] arrayNew = new int[rows, columns];
-
-for (int i = 0; i < array.GetLength(0); ++i)
-{
-    for (int j = 0; j < array.GetLength(1); ++j)
-    {
-        arrayNew[i, j] = array[i, j]*array2[i,j];
-    }
-}
-PrintArray(arrayNew);  */
-
-//Сформируйте трёхмерный массив из неповторяющихся двузначных чисел. Напишите программу, которая будет построчно выводить массив, добавляя индексы каждого элемента.
-
-/* Console.WriteLine($"Введите размер массива X x Y x Z:");
-int x = InputNumbers("Введите X: ");
-int y = InputNumbers("Введите Y: ");
-int z = InputNumbers("Введите Z: ");
-Console.WriteLine($"");
-
-int[,,] array = new int[x, y, z];
-CreateArray(array);
-PrintArray(array);
-
-int InputNumbers(string input)
-{
-  Console.Write(input);
-  int output = Convert.ToInt32(Console.ReadLine());
-  return output;
-}
-
-void PrintArray (int[,,] array)
-{
-  for (int i = 0; i < array.GetLength(0); i++)
-  {
-    for (int j = 0; j < array.GetLength(1); j++)
-    {
-      
-      for (int k = 0; k < array.GetLength(2); k++)
-      {
-          Console.Write( $"({i},{j},{k}){array[i,j,k]}; ");
-      }
-      Console.WriteLine();
-    }
-    Console.WriteLine();
-  }
-}
-
-void CreateArray(int[,,] array)
-{
-  int[] temp = new int[array.GetLength(0) * array.GetLength(1) * array.GetLength(2)];
-  int  number;
-  for (int i = 0; i < temp.GetLength(0); i++)
-  {
-    temp[i] = new Random().Next(10, 100);
-    number = temp[i];
-    if (i >= 1)
-    {
-      for (int j = 0; j < i; j++)
-      {
-        while (temp[i] == temp[j])
-        {
-          temp[i] = new Random().Next(10, 100);
-          j = 0;
-          number = temp[i];
-        }
-          number = temp[i];
-      }
-    }
-  }
-  int count = 0; 
-  for (int x = 0; x < array.GetLength(0); x++)
-  {
-    for (int y = 0; y < array.GetLength(1); y++)
-    {
-      for (int z = 0; z < array.GetLength(2); z++)
-      {
-        array[x, y, z] = temp[count];
-        count++;
-      }
-    }
-  }
+    if (m == 0)
+        return n + 1;
+    if (m > 0 && n == 0)
+     return Akkerman(m - 1, 1);
+    else
+    return Akkerman(m - 1, Akkerman(m, n - 1));
 } */
-
-// Напишите программу, которая заполнит спирально массив 4 на 4.
-
-/* int n = 4;
-int[,] array = new int[n, n];
-
-int temp = 1;
-int i = 0;
-int j = 0;
-
-while (temp <= array.GetLength(0) * array.GetLength(1))
-{
-  array[i, j] = temp;
-  temp++;
-  if (i <= j + 1 && i + j < array.GetLength(1) - 1)
-    j++;
-  else if (i < j && i + j >= array.GetLength(0) - 1)
-    i++;
-  else if (i >= j && i + j > array.GetLength(1) - 1)
-    j--;
-  else
-    i--;
-}
-
-WriteArray(array);
-
-void WriteArray (int[,] array)
-{
-  for (int i = 0; i < array.GetLength(0); i++)
-  {
-    for (int j = 0; j < array.GetLength(1); j++)
-    {
-      if (array[i,j] / 10 <= 0)
-      Console.Write($" {array[i,j]} ");
-
-      else Console.Write($"{array[i,j]} ");
-    }
-    Console.WriteLine();
-  }
-}
- */
